@@ -1,0 +1,77 @@
+const questions = [
+    {
+        question: "Indian Evidence Act was drafted by:",
+        options: ["Lord Macaulay", "Sir James F. Stephen", "Huxley", "Sir Henry Summer Maine"],
+        answer: 1
+    },
+    {
+        question: "The law of evidence consists of:",
+        options: ["ordinary rules of reasoning", "legal rules of evidence", "rules of logic", "all the above"],
+        answer: 3
+    },
+    {
+        question: "Relevancy and admissibility under the Indian Evidence Act are:",
+        options: ["synonymous", "co—extensive", "neither synonymous nor co-extensive", "synonymous & co-extensive both"],
+        answer: 2
+    },
+    {
+        question: "‘Self-regarding’ statements:",
+        options: ["can be self-serving statements", "can be self-harming statements", "can be self-serving or self-harming", "none of the above"],
+        answer: 2
+    },
+    {
+        question: "What is correct as regards the admissibility of self-regarding statements?",
+        options: [
+            "self-harming statement is admissible but a self-serving statement is not generally admissible",
+            "self-serving statement is admissible but a self-harming statement is not generally admissible",
+            "self-serving and self-harming statements both are generally admissible",
+            "self-serving and self-harming statements both are generally inadmissible"
+        ],
+        answer: 0
+    },
+    {
+        question: "Under the law of evidence, as a general rule:",
+        options: [
+            "opinion on a matter of fact is relevant but not on a matter of law",
+            "opinion on a matter of law is relevant but not on a matter of fact",
+            "opinion on a matter of fact and law both are relevant",
+            "opinion whether on a matter of fact or law, is irrelevant"
+        ],
+        answer: 0
+    }
+];
+
+function loadQuiz() {
+    const quizContainer = document.getElementById("quiz");
+    quizContainer.innerHTML = ""; 
+
+    questions.forEach((q, index) => {
+        let questionBlock = document.createElement("div");
+        questionBlock.classList.add("question-block");
+        questionBlock.innerHTML = <p><strong>${index + 1}. ${q.question}</strong></p>;
+
+        q.options.forEach((option, optIndex) => {
+            questionBlock.innerHTML += `
+                <label>
+                    <input type="radio" name="q${index}" value="${optIndex}"> ${option}
+                </label><br>
+            `;
+        });
+
+        quizContainer.appendChild(questionBlock);
+    });
+}
+
+function submitQuiz() {
+    let score = 0;
+    questions.forEach((q, index) => {
+        let selectedOption = document.querySelector(input[name="q${index}"]:checked);
+        if (selectedOption && parseInt(selectedOption.value) === q.answer) {
+            score++;
+        }
+    });
+
+    document.getElementById("result").innerText = You scored ${score} out of ${questions.length};
+}
+
+window.onload = loadQuiz;
